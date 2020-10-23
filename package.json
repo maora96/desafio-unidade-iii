@@ -1,0 +1,29 @@
+{
+  "name": "desafio-unidade-iii",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maora96/desafio-unidade-iii.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maora96/desafio-unidade-iii/issues"
+  },
+  "homepage": "https://github.com/maora96/desafio-unidade-iii#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^8.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^9.4.0",
+    "pg": "^8.4.1"
+  }
+}
