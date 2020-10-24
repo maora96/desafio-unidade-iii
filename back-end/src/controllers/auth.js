@@ -1,6 +1,6 @@
-const db = require("../utils/database");
 const Password = require("../utils/password");
 const jwt = require("jsonwebtoken");
+const user = require("../repositories/users");
 require("dotenv").config();
 
 const autenticar = async (ctx) => {
@@ -8,14 +8,10 @@ const autenticar = async (ctx) => {
   if (!email || !password) {
     ctx.body = "Pedido mal-formatado!";
   } else {
-    // procurar usuário na database
-    const q = {
-      text: `SELECT * FROM users where email = $1`,
-      values: [email],
-    };
-    const query = await db.query(q);
-    if (query.rows.length != 0) {
-      const hash = query.rows[0].senha;
+    const query = await user.pegarUser(email);
+
+    if (query.length != 0) {
+      const hash = query[0].senha;
       const comparison = await Password.check(password, hash);
       if (comparison) {
         const token = await jwt.sign(
