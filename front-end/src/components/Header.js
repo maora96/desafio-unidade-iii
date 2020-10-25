@@ -8,7 +8,7 @@ export default function Header(props) {
   const { token, setToken } = props;
 
   return (
-    <div className="App">
+    <div className="Wrapper">
       <header>
         <h1>Brasileirão</h1>
         {token !== null ? (

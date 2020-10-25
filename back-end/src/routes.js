@@ -12,9 +12,13 @@ router.get("/classificacao", tabela.pegarClassificacao);
 
 router.post("/auth", Auth.autenticar);
 
+router.post("/jogo", tabela.criarJogo);
+
+router.delete("/jogo/:id", tabela.deletarJogo);
+
 module.exports = router;
 // criar tabelas com dbeaver [x]
 // acessar/editar tabelas [x]
 // criar tabela de classificação [x]
 // criar autenticação [x]
-// organizar projeto []
+// organizar projeto [x]

@@ -3,7 +3,7 @@ import "../App.css";
 import { fazerRequisicaoComBody } from "../utils/fetch";
 
 const colunas = [
-  "time",
+  "nome",
   "pontos",
   "jogos",
   "vitorias",
@@ -15,15 +15,15 @@ const colunas = [
 ];
 
 const legenda = {
-  time: "Time",
-  pontos: "Pontos",
-  jogos: "Jogos",
-  vitorias: "Vitórias",
-  empates: "Empates",
-  derrotas: "Derrotas",
-  golsFeitos: "Gols Feitos",
-  golsSofridos: "Gols Sofridos",
-  saldo: "Saldo",
+  nome: "Time",
+  pontos: "PTS",
+  jogos: "J",
+  vitorias: "V",
+  empates: "E",
+  derrotas: "D",
+  golsFeitos: "GF",
+  golsSofridos: "GS",
+  saldo: "SG",
 };
 
 export default function Tabela() {
@@ -94,7 +94,7 @@ export default function Tabela() {
         </thead>
         <tbody>
           {dadosOrdenados.map((time, i) => (
-            <tr className={i <= 4 ? "top" : i <= 16 ? "" : "bottom"}>
+            <tr className={i <= 4 ? "top" : i < 16 ? "" : "bottom"}>
               <td>{i + 1}</td>
               {colunas.map((coluna) => (
                 <td>{time[coluna]}</td>

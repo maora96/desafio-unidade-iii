@@ -12,11 +12,9 @@ const obterJogosPorRodada = async (ctx) => {
 };
 
 const editarJogo = async (ctx) => {
-  console.log("hello");
   const { id = null, golsCasa = null, golsVisitante = null } = ctx.request.body;
   console.log(id, golsCasa, golsVisitante);
   if (id && golsCasa !== null && golsVisitante !== null) {
-    console.log("oi");
     const jogo = await jogos.editarJogo(id, golsCasa, golsVisitante);
     ctx.body = jogo;
   } else {
@@ -32,4 +30,50 @@ const pegarClassificacao = async (ctx) => {
   ctx.body = tabela;
 };
 
-module.exports = { obterJogosPorRodada, editarJogo, pegarClassificacao };
+const criarJogo = async (ctx) => {
+  const total = await jogos.pegarNumeroDeJogos();
+  const id = total + 1;
+  const {
+    time_casa,
+    time_visitante,
+    gols_casa,
+    gols_visitante,
+    rodada,
+  } = ctx.request.body;
+
+  if (
+    time_casa &&
+    time_visitante &&
+    (gols_casa !== null) & (gols_visitante !== null) &&
+    rodada
+  ) {
+    const novoJogo = await jogos.criarJogo(
+      time_casa,
+      time_visitante,
+      gols_casa,
+      gols_visitante,
+      rodada
+    );
+    ctx.body = novoJogo;
+  } else {
+    // response
+  }
+};
+
+const deletarJogo = async (ctx) => {
+  const { id = null } = ctx.params;
+  if (id) {
+    const deletado = await jogos.deletarJogo(id);
+    ctx.body = deletado;
+  } else {
+    // response
+  }
+};
+
+module.exports = {
+  obterJogosPorRodada,
+  editarJogo,
+  pegarClassificacao,
+  criarJogo,
+  deletarJogo,
+};

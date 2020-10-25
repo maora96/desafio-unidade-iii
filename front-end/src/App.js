@@ -11,8 +11,12 @@ function App() {
   return (
     <div className="App">
       <Header token={token} setToken={setToken} />
-      <Rodada token={token} setToken={setToken} />
-      <Tabela />
+      <main>
+        <div className="main-wrapper">
+          <Rodada token={token} setToken={setToken} />
+          <Tabela />
+        </div>
+      </main>
     </div>
   );
 }

@@ -46,7 +46,7 @@ export default function Rodada(props) {
           </button>
         )}
 
-        <h2>{rodada === 0 ? 1 : rodada}a Rodada</h2>
+        <h2>{rodada === 0 ? 1 : rodada}ª Rodada</h2>
         {rodada === 38 ? (
           <button disabled={true}>
             <img
@@ -75,7 +75,7 @@ export default function Rodada(props) {
             {rodadaDados.map((dados) => (
               <tr>
                 <td>{dados.time_casa}</td>
-                <td>
+                <td className="gol">
                   {editavel === dados.id ? (
                     <input
                       value={golsCasa}
@@ -87,8 +87,8 @@ export default function Rodada(props) {
                     dados.gols_casa
                   )}
                 </td>
-                <td>x</td>
-                <td>
+                <td className="versus">x</td>
+                <td className="gol">
                   {editavel === dados.id ? (
                     <input
                       value={golsVisitante}
@@ -109,8 +109,6 @@ export default function Rodada(props) {
                           setEditavel("");
                           // chamar api pra editar
                           const id = dados.id;
-                          const gCasa = parseInt(golsCasa);
-                          const gVisitante = parseInt(golsVisitante);
                           console.log(
                             id,
                             parseInt(golsCasa),
