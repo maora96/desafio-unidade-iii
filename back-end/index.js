@@ -1,9 +1,11 @@
-const Koa = require("koa");
-const bodyparser = require("koa-bodyparser");
+const Koa = require('koa');
+const bodyparser = require('koa-bodyparser');
+
 const server = new Koa();
-const router = require("./src/routes");
-const cors = require("@koa/cors");
-server.use(cors({ origin: "*" }));
+const cors = require('@koa/cors');
+const router = require('./src/routes');
+
+server.use(cors({ origin: '*' }));
 server.use(bodyparser());
 
 server.use(router.routes()).use(router.allowedMethods());
