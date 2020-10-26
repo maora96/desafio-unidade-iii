@@ -17,14 +17,17 @@ export default function Header(props) {
           <form
             onSubmit={(event) => {
               event.preventDefault();
-              fazerRequisicaoComBody("http://localhost:8081/auth", "POST", {
-                email,
-                password,
-              })
+              fazerRequisicaoComBody(
+                "https://desafio-3-back-cubos-academy.herokuapp.com/auth",
+                "POST",
+                {
+                  email,
+                  password,
+                }
+              )
                 .then((res) => res.json())
                 .then((resJson) => {
-                  const novoToken = resJson.dados;
-                  console.log(token);
+                  const novoToken = resJson.dados.token;
                   setToken(novoToken);
                   setEmail("");
                   setPassword("");

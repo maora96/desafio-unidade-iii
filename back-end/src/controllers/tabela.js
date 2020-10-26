@@ -1,13 +1,16 @@
 const jogos = require("../repositories/jogos");
 const utils = require("../utils/tabela");
+const response = require("../utils/response");
 
 const obterJogosPorRodada = async (ctx) => {
   const { rodada = null } = ctx.params;
   if (rodada) {
     const pedido = await jogos.obterJogosPorRodada(rodada);
-    ctx.body = pedido;
+    response(ctx, 200, pedido);
+  } else if (rodada >= 39 || rodada < 1) {
+    response(ctx, 404, "Rodada não existe!");
   } else {
-    // resposta
+    response(ctx, 404, "Pedido mal-formatado.");
   }
 };
 
@@ -16,9 +19,9 @@ const editarJogo = async (ctx) => {
   console.log(id, golsCasa, golsVisitante);
   if (id && golsCasa !== null && golsVisitante !== null) {
     const jogo = await jogos.editarJogo(id, golsCasa, golsVisitante);
-    ctx.body = jogo;
+    response(ctx, 200, jogo);
   } else {
-    // resposta
+    response(ctx, 404, "Pedido mal-formatado!");
   }
 };
 
@@ -27,7 +30,7 @@ const pegarClassificacao = async (ctx) => {
   const classificacao = await jogos.pegarClassificacao();
   utils.calcularTabela(classificacao, tabela);
   utils.ordernarTabela(tabela);
-  ctx.body = tabela;
+  response(ctx, 200, tabela);
 };
 
 const criarJogo = async (ctx) => {
@@ -54,9 +57,9 @@ const criarJogo = async (ctx) => {
       gols_visitante,
       rodada
     );
-    ctx.body = novoJogo;
+    response(ctx, 200, novoJogo);
   } else {
-    // response
+    response(ctx, 404, "Pedido mal-formatado!");
   }
 };
 
@@ -64,9 +67,9 @@ const deletarJogo = async (ctx) => {
   const { id = null } = ctx.params;
   if (id) {
     const deletado = await jogos.deletarJogo(id);
-    ctx.body = deletado;
+    response(ctx, 200, deletado);
   } else {
-    // response
+    response(ctx, 404, "Pedido mal-formatado!");
   }
 };
 

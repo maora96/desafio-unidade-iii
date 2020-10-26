@@ -1,12 +1,13 @@
 const Password = require("../utils/password");
 const jwt = require("jsonwebtoken");
 const user = require("../repositories/users");
+const response = require("../utils/response");
 require("dotenv").config();
 
 const autenticar = async (ctx) => {
   const { email = null, password = null } = ctx.request.body;
   if (!email || !password) {
-    ctx.body = "Pedido mal-formatado!";
+    response(ctx, 404, "Pedido mal-formatado!");
   } else {
     const query = await user.pegarUser(email);
 
@@ -21,12 +22,12 @@ const autenticar = async (ctx) => {
             expiresIn: "1h",
           }
         );
-        ctx.body = `${token}, Success! Email encontrado e senha correta!!`;
+        response(ctx, 200, token);
       } else {
-        ctx.body = "Success! Email encontrado, mas senha incorreta!";
+        response(ctx, 404, "Email encontrado, mas senha incorreta.");
       }
     } else {
-      ctx.body = "Success! Mas esse email não está cadastrado :/";
+      response(ctx, 404, "E-mail não cadastrado.");
     }
   }
 };

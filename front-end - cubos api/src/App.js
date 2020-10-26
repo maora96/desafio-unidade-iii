@@ -3,6 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Rodada from "./components/Rodada";
 import Tabela from "./components/Tabela";
+import Jogo from "./components/Jogo";
 
 function App() {
   // token

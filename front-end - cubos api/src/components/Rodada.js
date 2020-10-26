@@ -10,9 +10,11 @@ export default function Rodada(props) {
   const [rodada, setRodada] = React.useState(1);
   const [rodadaDados, setRodadaDados] = React.useState([]);
   React.useEffect(() => {
-    fetch(`http://localhost:8081/jogos/${rodada}`)
+    fetch(`https://desafio-3-back-cubos-academy.herokuapp.com/jogos/${rodada}`)
       .then((res) => res.json())
       .then((resJson) => {
+        console.log(resJson);
+        console.log(resJson.dados);
         setRodadaDados(resJson.dados);
       });
   }, [rodada]);
@@ -111,7 +113,7 @@ export default function Rodada(props) {
                           const id = dados.id;
 
                           fazerRequisicaoComBody(
-                            "http://localhost:8081/jogos/",
+                            "https://desafio-3-back-cubos-academy.herokuapp.com/jogos",
                             "POST",
                             { id, golsCasa, golsVisitante },
                             token
@@ -123,9 +125,9 @@ export default function Rodada(props) {
                                 (x) => x.id === dados.id
                               );
 
-                              time.gols_casa = resJson.dados.gols_casa;
+                              time.gols_casa = resJson.dados[0].gols_casa;
                               time.gols_visitante =
-                                resJson.dados.gols_visitante;
+                                resJson.dados[0].gols_visitante;
                               console.log(novaRodada);
                               setRodadaDados(novaRodada);
                             });

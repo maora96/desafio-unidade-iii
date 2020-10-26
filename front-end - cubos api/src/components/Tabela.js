@@ -2,7 +2,7 @@ import React from "react";
 import "../App.css";
 
 const colunas = [
-  "time",
+  "nome",
   "pontos",
   "jogos",
   "vitorias",
@@ -14,7 +14,7 @@ const colunas = [
 ];
 
 const legenda = {
-  time: "Time",
+  nome: "Time",
   pontos: "PTS",
   jogos: "J",
   vitorias: "V",
@@ -31,9 +31,10 @@ export default function Tabela() {
   const [ordem, setOrdem] = React.useState("ascendente");
 
   React.useEffect(() => {
-    fetch("http://localhost:8081/classificacao")
+    fetch("https://desafio-3-back-cubos-academy.herokuapp.com/classificacao")
       .then((res) => res.json())
       .then((resJson) => {
+        console.log(resJson.dados);
         const tabela = resJson.dados;
         tabela.forEach((time) => {
           time.saldo = time.golsFeitos - time.golsSofridos;
@@ -93,9 +94,9 @@ export default function Tabela() {
           {dadosOrdenados.map((time, i) => (
             <tr
               className={
-                time.pontos <= 36
+                time.pontos <= 33
                   ? "bottom"
-                  : time.pontos > 36 && time.pontos <= 64
+                  : time.pontos > 33 && time.pontos <= 64
                   ? ""
                   : "top"
               }
