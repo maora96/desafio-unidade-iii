@@ -6,7 +6,7 @@
 2. Instalar as dependências (listadas abaixo 👇)
 3. Executar a api com `node index.js`
 
-## Dependências
+# Dependências
 
 -   @koa/cors
 -   bcryptjs
