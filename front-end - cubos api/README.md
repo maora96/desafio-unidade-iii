@@ -4,7 +4,7 @@
 
 1. Clonar esse repositório
 2. Instalar as dependências (listadas abaixo :point_down:)
-3. Executar a aplicação com `npm start`
+3. Executar a app com `npm start`
 
 ## Dependências
 
